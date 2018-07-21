@@ -20,6 +20,11 @@ gulp.task('watch',function(){
 		//gulp.start('styles'); ##style will be add as injectCss dependendies
 		gulp.start('injectCss');
 	});
+
+	watch('./app/assets/scripts/**/*.js', function(){
+		gulp.start('scriptsRefresh');
+	});
+
 });
 
 
@@ -27,4 +32,8 @@ gulp.task('watch',function(){
 gulp.task('injectCss', ['styles'], function(){
 	return gulp.src('./app/temp/styles/styles.css')
 		.pipe(browserSync.stream());
+});
+
+gulp.task('scriptsRefresh', ['scripts'], function(){
+	browserSync.reload();
 });
